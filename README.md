@@ -27,9 +27,6 @@ During the development of this project, I improved my understanding of some esse
 - `email`: Specifically, MIMEText and MIMEMultipart, for creating email messages. <br />  
 - `datetime`: For timestamping in the log file and email subject lines. <br />
 
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Visual_Studio_Code_1.18_icon.svg" align= bottom width= 25 alt="snek" /> Visual Studio Code: An integrated development environment (IDE) used for writing, testing, and debugging the script. Its features like syntax highlighting, code completion, and Git integration support efficient development workflows. <br />
-
  ## Environments Used
 
 - **Windows 11** 
